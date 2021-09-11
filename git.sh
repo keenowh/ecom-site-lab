@@ -2,7 +2,7 @@
 
 git add .
 git commit -m "$1"
-git checkout main
+git checkout origin/main
 
 git merge progress
 git push
