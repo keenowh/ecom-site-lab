@@ -1,7 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-import { getFirestore, getDoc, doc, setDoc } from "firebase/firestore";
+import {
+    getFirestore,
+    getDoc,
+    doc,
+    setDoc,
+    writeBatch,
+    collection,
+} from "firebase/firestore";
 
 const config = {
     apiKey: "AIzaSyAn3YSUyUbeAfCbyFKnWxTZYY0ptPpFAHc",
@@ -43,6 +50,26 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
 
     return userRef;
+};
+
+export const addCollectionAndDocuments = async (
+    collectionKey,
+    objectsToAdd
+) => {
+    // Create a collection reference especially if collection is non-existing
+    const collectionRef = collection(firestore, collectionKey);
+    // Batch functions allow multiple doc writes in a single function
+    const batch = writeBatch(firestore);
+    objectsToAdd.forEach((obj) => {
+        // get a new doc reference IN CASE YOU WANT A NEW DOCUMENT ID or you cant set an ID immediately
+        const newDocRef = doc(collectionRef);
+
+        // add each batch to the queue for batch upload to firestore
+        batch.set(newDocRef, obj);
+    });
+
+    // do the upload
+    return await batch.commit();
 };
 
 const provider = new GoogleAuthProvider();
