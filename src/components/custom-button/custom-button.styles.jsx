@@ -6,6 +6,9 @@ const buttonStyles = css`
     border: none;
 
     &:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
     }
 `;
 
