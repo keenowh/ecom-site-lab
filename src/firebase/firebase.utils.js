@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 
 const config = {
-    apiKey: "AIzaSyAn3YSUyUbeAfCbyFKnWxTZYY0ptPpFAHc",
+    apiKey: process.env.REACT_APP_FIREBASE_API,
     authDomain: "e-com-db-5561a.firebaseapp.com",
     projectId: "e-com-db-5561a",
     storageBucket: "e-com-db-5561a.appspot.com",
