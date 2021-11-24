@@ -90,12 +90,12 @@ export const addCollectionAndDocuments = async (
     return await batch.commit();
 };
 
-const provider = new GoogleAuthProvider();
+export const googleProvider = new GoogleAuthProvider();
 
-provider.setCustomParameters({ prompt: "select_account" });
+googleProvider.setCustomParameters({ prompt: "select_account" });
 
 export const SignInWithGoogle = () => {
-    signInWithPopup(auth, provider);
+    signInWithPopup(auth, googleProvider);
 };
 
 export default app;

@@ -19,10 +19,10 @@ export const fetchCollectionsStartAsync = () => {
                 const collectionsMap = convertCollectionSnapshotToMap(snapshot);
                 dispatch(fetchCollectionsSuccess(collectionsMap));
             })
-            .catch((error) => dispatch(fetchCollectionsError(error.message)));
+            .catch((error) => dispatch(fetchCollectionsFailure(error.message)));
     };
 };
-export const fetchCollectionsError = (errorMessage) => ({
+export const fetchCollectionsFailure = (errorMessage) => ({
     type: ShopActionTypes.FETCH_COLLECTIONS_FAILURE,
     payload: errorMessage,
 });
